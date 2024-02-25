@@ -8,9 +8,32 @@ getComputerSelection = () => {
     } else if (random === 1){
         computerSelection = "papper";
         return `${computerSelection}`;
+    } else {
+        computerSelection = "scissor";
+        return `${computerSelection}`
     }
-    computerSelection = "scissor";
-    return `${computerSelection}`
 }
 
-console.log(getComputerSelection());
+playRound = function (playerSelection, computerSelection){
+    if(
+       playerSelection === "rock" && computerSelection === "scissor" ||
+       playerSelection === "papper" && computerSelection === "rock" ||
+       playerSelection === "scissor" && computerSelection === "papper" ){
+        return alert(`You win! ${playerSelection} beats ${computerSelection}`)
+    } else if(
+        playerSelection === "rock" && computerSelection === "papper" ||   playerSelection === "papper" && computerSelection === "scissor" || playerSelection === "scissor" && computerSelection === "rock"){
+            return alert(`You Lose! ${computerSelection} beats ${playerSelection}`)
+    }else if(playerSelection === computerSelection){
+        return alert(`Is a tie!`)
+    }
+    return alert(`something went wrong`);
+}
+
+playGame = function (play){
+    do {
+        playRound(getPlayerSelection(), getComputerSelection());
+        play = confirm("Do you want play again?")
+    } while(play===true);
+}
+
+playGame();
